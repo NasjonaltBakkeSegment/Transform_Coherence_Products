@@ -1,0 +1,6 @@
+title: "SAR coherence and backscatter product"
+institution: "Your institution here"
+source: "Sentinel-1 derived products"
+history: "Created from GeoTIFFs using rasterio and xarray"
+references: ""
+Conventions: "CF-1.8"

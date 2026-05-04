@@ -1,0 +1,5 @@
+coherence_products/*
+*__pycache__*
+*.tif
+*.tiff
+*.nc
