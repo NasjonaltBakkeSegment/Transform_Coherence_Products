@@ -1,6 +1,6 @@
 # Transform Coherence Products
 
-Tools to convert SAR coherence and backscatter GeoTIFFs into a single CF‑friendly NetCDF file, using attributes from configuration YAML files.
+Tools to convert SAR coherence and backscatter GeoTIFFs into a single CF‑NetCDF file, using attributes from configuration YAML files.
 
 ## Repository layout
 

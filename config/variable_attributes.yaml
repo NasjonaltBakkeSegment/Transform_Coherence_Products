@@ -1,43 +1,53 @@
 VV_coherence:
-  long_name: "VV coherence"
   units: "1"
-  description: "Interferometric coherence between two SAR acquisitions"
+  long_name: "Interferometric coherence between two SAR acquisitions"
   coverage_content_type: "physicalMeasurement"
+  coordinates: "lat lon"
 
 VV_gamma_nought:
-  long_name: "VV gamma nought backscatter"
-  units: "dB"
-  description: "Flattened gamma nought backscatter in VV polarization"
+  units: "dB" # TODO: Check units for all data variables
+  long_name: "Flattened gamma nought backscatter in VV polarization"
   coverage_content_type: "physicalMeasurement"
+  coordinates: "lat lon"
 
 VH_gamma_nought:
-  long_name: "VH gamma nought backscatter"
   units: "dB"
-  description: "Flattened gamma nought backscatter in VH polarization"
+  long_name: "Flattened gamma nought backscatter in VH polarization"
   coverage_content_type: "physicalMeasurement"
+  coordinates: "lat lon"
 
 VV_sigma_nought:
-  long_name: "VV sigma nought backscatter"
   units: "dB"
-  description: "Sigma nought backscatter in VV polarization"
+  long_name: "Sigma nought backscatter in VV polarization"
   coverage_content_type: "physicalMeasurement"
+  coordinates: "lat lon"
 
 VH_sigma_nought:
-  long_name: "VH sigma nought backscatter"
   units: "dB"
-  description: "Sigma nought backscatter in VH polarization"
+  long_name: "Sigma nought backscatter in VH polarization"
   coverage_content_type: "physicalMeasurement"
+  coordinates: "lat lon"
 
 x:
   standard_name: "projection_x_coordinate"
   long_name: "x coordinate of projection"
   units: "m"
-  axis: "X"
   coverage_content_type: "coordinate"
 
 y:
   standard_name: "projection_y_coordinate"
   long_name: "y coordinate of projection"
   units: "m"
-  axis: "Y"
   coverage_content_type: "coordinate"
+
+lat:
+  standard_name: latitude
+  long_name: latitude
+  coverage_content_type: coordinate
+  units: degrees_north
+
+lon:
+  standard_name: longitude
+  long_name: longitude
+  coverage_content_type: coordinate
+  units: degrees_east
