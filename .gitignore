@@ -1,5 +1,19 @@
 coherence_products/*
+coherence_clean*
+test_execute.sh
 *__pycache__*
 *.tif
 *.tiff
 *.nc
+
+# Output directories
+netcdf_output/
+mmd_output/
+
+# IDE and system files
+.vscode/
+.idea/
+*.pyc
+*.pyo
+__pycache__/
+.DS_Store

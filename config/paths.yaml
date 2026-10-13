@@ -1,0 +1,3 @@
+# Configuration for external repository paths
+mdharvest:
+  src_path: /home/lukem/Documents/MET/Projects/ESA_NBS/Git_repos/mdharvest/src

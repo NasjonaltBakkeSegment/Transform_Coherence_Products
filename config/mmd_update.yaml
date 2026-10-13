@@ -1,0 +1,19 @@
+mmd_update:
+  dataset_production_status: Complete
+  project_short_name: NBS
+  parent_uuid: 'no.met.nbs:453183e8-37a0-4d0c-87b6-5a4a50e337c4'
+  use_constraint_license_text: The use of these data are covered by the Legal notice on the use of Copernicus Sentinel Data and Service Information at https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice
+  data_center:
+    short_name: METNO
+    long_name: Norwegian Meteorological Institute
+    data_center_url: https://met.no
+
+  sentinel1:
+    product_type: SAR-ARD-L1-COH
+    instrument_short_name: SAR-C
+    instrument_long_name: Synthetic Aperture Radar (C-band)
+    instrument_resource: https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1
+
+  sios:
+    enabled: true
+    north_threshold: 70.0

@@ -1,17 +1,21 @@
+title: "Sentinel-1 Norway Analysis-Ready Radar Backscatter and Coherence Data"  
+summary: "For each available Sentinel-1 Single Look Complex product, radar backscatter data for available polarizations is radiometrically corrected for terrain effects and resampled at 10m posting. The output is divided into fixed 100km x 100km tiles in UTM zone 33. For each polarization, both the terrain corrected gamma nought backscatter and the corresponding uncorrected sigma nought backscatter are provided. In addition, the interferometric coherence between the product and the previous product from the same location and radar geometry is provided on the same grid."
+title_no: "Analyseklare Sentinel-1-data for radar-tilbakespredning og koherens i Norge"
+summary_no: "Alle tilgjengelige polarisasjoner i hvert tilgjengelige Sentinel-1-produkt på 'Single Look Complex'-format korrigeres for terreng-effekter, og interpoleres til et 10-meters rutenett. Resultatet deles i faste 100km x 100km ruter i UTM zone 33. For hver polarisasjon inneholder produktet både terreng-korrigert gamma-null og og ukorrigert sigma-null tilbakespreding. Produktet inneholder også interferometrisk koherens mellom produktet og det forrige tilgjengelige produktet fra samme lokasjon og radargeometri."
 history: "netCDF created from GeoTIFFs using rasterio and xarray by the NBS project at Norwegian Meteorogolical Institute"
 # Check keywords vs here https://gcmd.earthdata.nasa.gov/KeywordViewer/
 keywords: "GCMDSK:Earth Science > Spectral/Engineering > RADAR > RADAR backscatter,GCMDSK:Earth Science > Spectral/Engineering > RADAR > RADAR imagery,GCMDSK:Earth Science > Spectral/Engineering > Microwave > Microwave imagery,GEMET:Orthoimagery,GEMET:Land cover"
 keywords_vocabulary: "GCMDSK:GCMD Science Keywords:https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords,GEMET:INSPIRE Themes:http://inspire.ec.europa.eu/theme"
 iso_topic_category: 'climatologyMeteorologyAtmosphere,oceans,imageryBaseMapsEarthCover'
 Conventions: "CF-1.8, ACDD-1.3"
-institution: 'Norwegian Research Centre (NORCE)' # Primary institution responsible for the data
+institution: 'Geological Survey of Norway (NGU)' # Primary institution responsible for the data
 creator_type: 'institution, institution' # Could alternatively be 'person', then list people
-creator_name: 'Norwegian Research Centre, Geological Survey of Norway' # Decide on order for this
+creator_name: 'Geological Survey of Norway, Norwegian Research Centre' # Decide on order for this
 creator_email: '' # Provide contact emails
-creator_url: 'https://www.norceresearch.no, https://www.ngu.no/'
-creator_pid: 'https://ror.org/02gagpf75, https://ror.org/036dwbr90' # Use your OrcID if the creator is changed to person instead of institution
-creator_institution: 'Norwegian Research Centre, Geological Survey of Norway'
-creator_institution_pid: 'https://ror.org/02gagpf75, https://ror.org/036dwbr90'
+creator_url: 'https://www.ngu.no/, https://www.norceresearch.no'
+creator_pid: 'https://ror.org/036dwbr90, https://ror.org/02gagpf75' # Use your OrcID if the creator is changed to person instead of institution
+creator_institution: 'Geological Survey of Norway, Norwegian Research Centre'
+creator_institution_pid: 'https://ror.org/036dwbr90, https://ror.org/02gagpf75'
 publisher_name: 'NBS Helpdesk'
 publisher_email: 'nbs-helpdesk@met.no'
 publisher_institution: 'Norwegian Meteorological Institute'
@@ -20,10 +24,10 @@ publisher_url: 'https://www.satellittdata.no/'
 metadata_status: 'Active'
 dataset_language: 'en'
 dataset_production_status: 'Complete'
-processing_level: 'Operational'
+processing_level: 'Level-1'
 access_constraint: 'Open'
-license_text: 'The use of these data are covered by the Legal notice on the use of Copernicus Sentinel Data and Service Information at https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice'
-license: 'https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice (Sentinel_Data_Legal_Notice)'
+license_text: 'This product is produced by the Geological Survey of Norway (NGU) and licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0), compatible with the Norwegian Licence for Open Government Data (NLOD) 2.0. Contains modified Copernicus Sentinel data. Use of the underlying Sentinel data is subject to the Copernicus Sentinel Data Legal Notice at https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice'
+license: 'https://spdx.org/licenses/CC-BY-4.0.html (CC-BY-4.0)'
 project: 'Nasjonalt BakkeSegment'
 project_short_name: 'NBS'
 collection: 'NBS'
@@ -33,7 +37,6 @@ source: 'Space Borne Instrument'
 geospatial_bounds_crs: 'EPSG:4326'
 instrument: 'Synthetic Aperture Radar (C-band)'
 instrument_vocabulary: 'https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1'
-summary: '' # Analagous to an abstract in a paper. Description of the data
 standard_name_vocabulary: 'CF Standard Name Table v87'
 operational_status: 'Operational'
 # For help filling in these attributes, or in adding more, see here: https://adc.met.no/submit-data-as-netcdf-cf

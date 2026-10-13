@@ -1,4 +1,6 @@
 from typing import Dict, Any
+import json
+import re
 import xarray as xr
 import rasterio
 import uuid
@@ -67,6 +69,70 @@ def update_global_attributes(global_attributes, lat, lon):
 
     return global_attributes
 
+
+def _normalize_product_identifier(identifier: str) -> str:
+    """Return a Sentinel product name without the trailing SAFE suffix."""
+    if identifier.endswith(".SAFE"):
+        return identifier[:-5]
+    return identifier
+
+
+def _platform_name_from_product_identifier(identifier: str) -> str | None:
+    """Map a Sentinel-1 product identifier prefix like S1C to a platform name."""
+    product_name = _normalize_product_identifier(identifier)
+    match = re.match(r"^(S1[A-D])", product_name)
+    if not match:
+        return None
+    return f"Sentinel-{match.group(1)[1:]}"
+
+
+def _extract_timestamps_from_product_identifier(identifier: str) -> tuple[str, str] | None:
+    """Extract the first two acquisition timestamps from a Sentinel product identifier."""
+    product_name = _normalize_product_identifier(identifier)
+    timestamps = re.findall(r"\d{8}T\d{6}", product_name)
+    if len(timestamps) < 2:
+        return None
+
+    start_timestamp, end_timestamp = timestamps[:2]
+    start_iso = dt.datetime.strptime(start_timestamp, "%Y%m%dT%H%M%S").strftime("%Y-%m-%dT%H:%M:%SZ")
+    end_iso = dt.datetime.strptime(end_timestamp, "%Y%m%dT%H%M%S").strftime("%Y-%m-%dT%H:%M:%SZ")
+    return start_iso, end_iso
+
+
+def extract_acquisition_products_from_tif(tif_path: str) -> Dict[str, str]:
+    """Extract earlier/later acquisition product names from TIFFTAG_IMAGEDESCRIPTION."""
+    with rasterio.open(tif_path) as src:
+        image_description = src.tags().get("TIFFTAG_IMAGEDESCRIPTION")
+
+    if not image_description:
+        return {}
+
+    metadata = json.loads(image_description)
+
+    acquisition_attrs: Dict[str, str] = {}
+    for acquisition_key in ("earlier_acquisition", "later_acquisition"):
+        acquisition = metadata.get(acquisition_key, {})
+        identifiers = acquisition.get("source_product_identifiers") or []
+        if identifiers:
+            normalized_identifiers = [
+                _normalize_product_identifier(identifier) for identifier in identifiers
+            ]
+            acquisition_attrs[f"{acquisition_key}_product_name"] = ", ".join(
+                normalized_identifiers
+            )
+
+            platform_name = _platform_name_from_product_identifier(normalized_identifiers[0])
+            if platform_name:
+                acquisition_attrs[f"{acquisition_key}_platform_name"] = platform_name
+
+            timestamps = _extract_timestamps_from_product_identifier(normalized_identifiers[0])
+            if acquisition_key == "earlier_acquisition" and timestamps:
+                acquisition_attrs["time_coverage_start"] = timestamps[0]
+            if acquisition_key == "later_acquisition" and timestamps:
+                acquisition_attrs["time_coverage_end"] = timestamps[1]
+
+    return acquisition_attrs
+
 def load_raster_as_dataarray(
     var_name: str,
     path: str,
@@ -91,17 +157,70 @@ def load_raster_as_dataarray(
     return da
 
 
+def discover_tif_files(base_dir: str) -> Dict[str, str]:
+    """
+    Dynamically discover TIF files in base_dir and map them to variable names.
+    
+    Expected file patterns:
+    - *VV_coherence.tif
+    - *VV_gamma_nought.tif
+    - *VH_gamma_nought.tif
+    - *VV_sigma_nought.tif
+    - *VH_sigma_nought.tif
+    
+    Returns a dict mapping variable names to file paths.
+    Raises ValueError if required files are missing.
+    """
+    base_path = Path(base_dir)
+    if not base_path.exists():
+        raise ValueError(f"Base directory does not exist: {base_dir}")
+    
+    # Required product types
+    required_products = {
+        "VV_coherence",
+        "VV_gamma_nought",
+        "VH_gamma_nought",
+        "VV_sigma_nought",
+        "VH_sigma_nought",
+    }
+    
+    input_files = {}
+    tif_files = sorted(base_path.glob("*.tif"))
+    
+    if not tif_files:
+        raise ValueError(f"No TIF files found in {base_dir}")
+    
+    # Map each product type to its corresponding file
+    for product_type in required_products:
+        matching = [f for f in tif_files if product_type in f.name]
+        
+        if not matching:
+            raise ValueError(
+                f"No TIF file found for '{product_type}' in {base_dir}. "
+                f"Available files: {[f.name for f in tif_files]}"
+            )
+        if len(matching) > 1:
+            raise ValueError(
+                f"Multiple TIF files found for '{product_type}' in {base_dir}: "
+                f"{[f.name for f in matching]}"
+            )
+        
+        input_files[product_type] = str(matching[0])
+    
+    return input_files
+
+
 def build_dataset(base_dir: str) -> xr.Dataset:
     """
-    Build the xarray.Dataset from the 5 known GeoTIFFs in `base_dir`.
+    Build the xarray.Dataset from GeoTIFFs in `base_dir`.
+    Automatically discovers the required files:
+    - *VV_coherence.tif
+    - *VV_gamma_nought.tif
+    - *VH_gamma_nought.tif
+    - *VV_sigma_nought.tif
+    - *VH_sigma_nought.tif
     """
-    input_files = {
-        "VV_coherence": base_dir + "W01N67_081_20250814_20250820_VV_coherence.tif",
-        "VV_gamma_nought": base_dir + "W01N67_081_20250820_VV_gamma_nought.tif",
-        "VH_gamma_nought": base_dir + "W01N67_081_20250820_VH_gamma_nought.tif",
-        "VV_sigma_nought": base_dir + "W01N67_081_20250820_VV_sigma_nought.tif",
-        "VH_sigma_nought": base_dir + "W01N67_081_20250820_VH_sigma_nought.tif",
-    }
+    input_files = discover_tif_files(base_dir)
 
     var_attr_yaml_path = "config/variable_attributes.yaml"
     global_attr_yaml_path = "config/global_attributes.yaml"
@@ -125,6 +244,8 @@ def build_dataset(base_dir: str) -> xr.Dataset:
         if not derived_title:
             raise ValueError("No title in global_attributes.yaml and could not derive title from TIFF.")
         global_attrs["title"] = derived_title
+
+    global_attrs.update(extract_acquisition_products_from_tif(input_files["VV_coherence"]))
 
 
     # Apply x/y attributes from config, if present

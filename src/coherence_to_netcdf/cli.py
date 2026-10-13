@@ -26,7 +26,10 @@ def main(argv=None):
 
     args = parser.parse_args(argv)
 
-    ds = build_dataset(base_dir=args.base_dir)
+    # Normalize base dir because downstream path-building expects a trailing separator.
+    base_dir = args.base_dir if args.base_dir.endswith('/') else f"{args.base_dir}/"
+
+    ds = build_dataset(base_dir=base_dir)
 
     title = ds.attrs.get("title")
     if title is None:
@@ -43,3 +46,4 @@ def main(argv=None):
 
     ds.to_netcdf(output_path)
     print(f"NetCDF written to: {output_path}")
+    return output_path
