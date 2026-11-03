@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mmd:mmd xmlns:mmd="http://www.met.no/schema/mmd" xmlns:gml="http://www.opengis.net/gml">
+  <mmd:metadata_identifier>no.met.nbs:33bbeac8-4f15-4849-8249-b8b336db66c5</mmd:metadata_identifier>
+  <mmd:title xml:lang="en">Sentinel-1 Norway Analysis-Ready Radar Backscatter and Coherence Data</mmd:title>
+  <mmd:title xml:lang="no">Analyseklare Sentinel-1-data for radar-tilbakespredning og koherens i Norge</mmd:title>
+  <mmd:abstract xml:lang="en">For each available Sentinel-1 Single Look Complex product, radar backscatter data for available polarizations is radiometrically corrected for terrain effects and resampled at 10m posting. The output is divided into fixed 100km x 100km tiles in UTM zone 33. For each polarization, both the terrain corrected gamma nought backscatter and the corresponding uncorrected sigma nought backscatter are provided. In addition, the interferometric coherence between the product and the previous product from the same location and radar geometry is provided on the same grid.</mmd:abstract>
+  <mmd:abstract xml:lang="no">Alle tilgjengelige polarisasjoner i hvert tilgjengelige Sentinel-1-produkt på 'Single Look Complex'-format korrigeres for terreng-effekter, og interpoleres til et 10-meters rutenett. Resultatet deles i faste 100km x 100km ruter i UTM zone 33. For hver polarisasjon inneholder produktet både terreng-korrigert gamma-null og og ukorrigert sigma-null tilbakespreding. Produktet inneholder også interferometrisk koherens mellom produktet og det forrige tilgjengelige produktet fra samme lokasjon og radargeometri.</mmd:abstract>
+  <mmd:metadata_status>Active</mmd:metadata_status>
+  <mmd:dataset_production_status>In Work</mmd:dataset_production_status>
+  <mmd:collection>NBS</mmd:collection>
+  <mmd:last_metadata_update>
+    <mmd:update>
+      <mmd:datetime>2026-11-03</mmd:datetime>
+      <mmd:type>Created</mmd:type>
+      <mmd:note>MMD record created</mmd:note>
+    </mmd:update>
+  </mmd:last_metadata_update>
+  <mmd:temporal_extent>
+    <mmd:start_date>2014-10-03</mmd:start_date>
+  </mmd:temporal_extent>
+  <mmd:iso_topic_category>climatologyMeteorologyAtmosphere</mmd:iso_topic_category>
+  <mmd:iso_topic_category>oceans</mmd:iso_topic_category>
+  <mmd:iso_topic_category>imageryBaseMapsEarthCover</mmd:iso_topic_category>
+  <mmd:keywords vocabulary="GCMDSK">
+    <mmd:keyword>Earth Science &gt; Spectral/Engineering &gt; RADAR &gt; RADAR backscatter</mmd:keyword>
+    <mmd:keyword>Earth Science &gt; Spectral/Engineering &gt; RADAR &gt; RADAR imagery</mmd:keyword>
+    <mmd:keyword>Earth Science &gt; Spectral/Engineering &gt; Microwave &gt; Microwave imagery</mmd:keyword>
+  </mmd:keywords>
+  <mmd:keywords vocabulary="GEMET">
+    <mmd:keyword>Orthoimagery</mmd:keyword>
+    <mmd:keyword>Land cover</mmd:keyword>
+  </mmd:keywords>
+  <mmd:keywords vocabulary="CFSTDN">
+    <mmd:keyword>projection_x_coordinate</mmd:keyword>
+    <mmd:keyword>projection_y_coordinate</mmd:keyword>
+  </mmd:keywords>
+  <mmd:geographic_extent>
+    <mmd:rectangle srsName="EPSG:4326">
+      <mmd:north>72.280208</mmd:north>
+      <mmd:south>57.079468</mmd:south>
+      <mmd:east>35.414722</mmd:east>
+      <mmd:west>1.186074</mmd:west>
+    </mmd:rectangle>
+    <mmd:polygon>
+      <gml:Polygon id="polygon" srsName="EPSG:4326">
+        <gml:exterior>
+          <gml:LinearRing>
+            <gml:pos>57.079468 5.081549</gml:pos>
+            <gml:pos>57.436311 11.765386</gml:pos>
+            <gml:pos>58.484387 13.713037</gml:pos>
+            <gml:pos>68.349685 32.887981</gml:pos>
+            <gml:pos>70.982555 35.414722</gml:pos>
+            <gml:pos>71.231582 35.295985</gml:pos>
+            <gml:pos>72.280208 20.895817</gml:pos>
+            <gml:pos>72.249100 20.394053</gml:pos>
+            <gml:pos>68.591055 9.509123</gml:pos>
+            <gml:pos>63.638601 2.353777</gml:pos>
+            <gml:pos>61.594636 1.186074</gml:pos>
+            <gml:pos>58.034448 2.594943</gml:pos>
+            <gml:pos>57.862535 2.804683</gml:pos>
+            <gml:pos>57.129114 4.715437</gml:pos>
+            <gml:pos>57.079468 5.081549</gml:pos>
+          </gml:LinearRing>
+        </gml:exterior>
+      </gml:Polygon>
+    </mmd:polygon>
+  </mmd:geographic_extent>
+  <mmd:personnel>
+    <mmd:type>Organisation</mmd:type>
+    <mmd:name uri="https://ror.org/036dwbr90">Geological Survey of Norway</mmd:name>
+    <mmd:role>Investigator</mmd:role>
+    <mmd:email/>
+    <mmd:organisation uri="https://ror.org/036dwbr90">Geological Survey of Norway</mmd:organisation>
+  </mmd:personnel>
+  <mmd:personnel>
+    <mmd:type>Organisation</mmd:type>
+    <mmd:name uri="https://ror.org/02gagpf75">NORCE Research AS</mmd:name>
+    <mmd:role>Investigator</mmd:role>
+    <mmd:email/>
+    <mmd:organisation uri="https://ror.org/02gagpf75">NORCE Research AS</mmd:organisation>
+  </mmd:personnel>
+  <mmd:personnel>
+    <mmd:name>NBS Helpdesk</mmd:name>
+    <mmd:role>Data center contact</mmd:role>
+    <mmd:email>nbs-helpdesk@met.no</mmd:email>
+    <mmd:organisation uri="https://ror.org/001n36p86">Norwegian Meteorological Institute</mmd:organisation>
+  </mmd:personnel>
+  <mmd:data_center>
+    <mmd:data_center_name>
+      <mmd:short_name>METNO</mmd:short_name>
+      <mmd:long_name>Norwegian Meteorological Institute</mmd:long_name>
+    </mmd:data_center_name>
+    <mmd:data_center_url>https://met.no</mmd:data_center_url>
+  </mmd:data_center>
+  <mmd:use_constraint>
+    <mmd:identifier>CC-BY-4.0</mmd:identifier>
+    <mmd:resource>http://spdx.org/licenses/CC-BY-4.0</mmd:resource>
+    <mmd:license_text>The use of these data are covered by the Legal notice on the use of Copernicus Sentinel Data and Service Information at https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice</mmd:license_text>
+  </mmd:use_constraint>
+  <mmd:project>
+    <mmd:short_name>NBS</mmd:short_name>
+    <mmd:long_name>Nasjonalt BakkeSegment</mmd:long_name>
+  </mmd:project>
+  <mmd:platform>
+    <mmd:short_name>Sentinel-1A</mmd:short_name>
+    <mmd:long_name>Sentinel-1A</mmd:long_name>
+    <mmd:resource>https://www.wmo-sat.info/oscar/satellites/view/sentinel_1c</mmd:resource>
+    <mmd:instrument>
+      <mmd:short_name>SAR-C</mmd:short_name>
+      <mmd:long_name>Synthetic Aperture Radar (C-band)</mmd:long_name>
+      <mmd:resource>https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1</mmd:resource>
+      <mmd:product_type>SAR-ARD-L1-COH</mmd:product_type>
+    </mmd:instrument>
+  </mmd:platform>
+  <mmd:platform>
+    <mmd:short_name>Sentinel-1B</mmd:short_name>
+    <mmd:long_name>Sentinel-1B</mmd:long_name>
+    <mmd:resource>https://www.wmo-sat.info/oscar/satellites/view/sentinel_1c</mmd:resource>
+    <mmd:instrument>
+      <mmd:short_name>SAR-C</mmd:short_name>
+      <mmd:long_name>Synthetic Aperture Radar (C-band)</mmd:long_name>
+      <mmd:resource>https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1</mmd:resource>
+      <mmd:product_type>SAR-ARD-L1-COH</mmd:product_type>
+    </mmd:instrument>
+  </mmd:platform>
+  <mmd:platform>
+    <mmd:short_name>Sentinel-1C</mmd:short_name>
+    <mmd:long_name>Sentinel-1C</mmd:long_name>
+    <mmd:resource>https://www.wmo-sat.info/oscar/satellites/view/sentinel_1c</mmd:resource>
+    <mmd:instrument>
+      <mmd:short_name>SAR-C</mmd:short_name>
+      <mmd:long_name>Synthetic Aperture Radar (C-band)</mmd:long_name>
+      <mmd:resource>https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1</mmd:resource>
+      <mmd:product_type>SAR-ARD-L1-COH</mmd:product_type>
+    </mmd:instrument>
+  </mmd:platform>
+  <mmd:platform>
+    <mmd:short_name>Sentinel-1D</mmd:short_name>
+    <mmd:long_name>Sentinel-1D</mmd:long_name>
+    <mmd:resource>https://www.wmo-sat.info/oscar/satellites/view/sentinel_1d</mmd:resource>
+    <mmd:instrument>
+      <mmd:short_name>SAR-C</mmd:short_name>
+      <mmd:long_name>Synthetic Aperture Radar (C-band)</mmd:long_name>
+      <mmd:resource>https://www.wmo-sat.info/oscar/instruments/view/sar_c_sentinel_1</mmd:resource>
+      <mmd:product_type>SAR-ARD-L1-COH</mmd:product_type>
+    </mmd:instrument>
+  </mmd:platform>
+  <mmd:spatial_representation>grid</mmd:spatial_representation>
+  <mmd:activity_type>Space Borne Instrument</mmd:activity_type>
+  <mmd:operational_status>Operational</mmd:operational_status>
+</mmd:mmd>
